@@ -19,13 +19,11 @@ class IluminacionController extends Controller
      */
     public function store(Request $request)
     {
-           $validated = $request->validate([
-              'valor' => 'required|numeric',
-              'unidad' => 'required|string',
-              'timestamp' => 'nullable|date',
-           ]);
-           $iluminacion = \App\Models\Iluminacion::create($validated);
-           return response()->json($iluminacion, 201);
+              $validated = $request->validate([
+                  'iluminacions' => 'required|numeric',
+              ]);
+              $iluminacion = \App\Models\Iluminacion::create($validated);
+              return response()->json($iluminacion, 201);
     }
 
     /**

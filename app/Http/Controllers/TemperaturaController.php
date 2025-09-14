@@ -19,13 +19,11 @@ class TemperaturaController extends Controller
      */
     public function store(Request $request)
     {
-           $validated = $request->validate([
-              'valor' => 'required|numeric',
-              'unidad' => 'required|string',
-              'timestamp' => 'nullable|date',
-           ]);
-           $temperatura = \App\Models\Temperatura::create($validated);
-           return response()->json($temperatura, 201);
+              $validated = $request->validate([
+                  'temperatura' => 'required|numeric',
+              ]);
+              $temperatura = \App\Models\Temperatura::create($validated);
+              return response()->json($temperatura, 201);
     }
 
     /**

@@ -19,13 +19,11 @@ class PresionController extends Controller
      */
     public function store(Request $request)
     {
-           $validated = $request->validate([
-              'valor' => 'required|numeric',
-              'unidad' => 'required|string',
-              'timestamp' => 'nullable|date',
-           ]);
-           $presion = \App\Models\Presion::create($validated);
-           return response()->json($presion, 201);
+              $validated = $request->validate([
+                  'presions' => 'required|numeric',
+              ]);
+              $presion = \App\Models\Presion::create($validated);
+              return response()->json($presion, 201);
     }
 
     /**

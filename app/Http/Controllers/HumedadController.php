@@ -19,13 +19,11 @@ class HumedadController extends Controller
      */
     public function store(Request $request)
     {
-           $validated = $request->validate([
-              'valor' => 'required|numeric',
-              'unidad' => 'required|string',
-              'timestamp' => 'nullable|date',
-           ]);
-           $humedad = \App\Models\Humedad::create($validated);
-           return response()->json($humedad, 201);
+              $validated = $request->validate([
+                  'humedad' => 'required|numeric',
+              ]);
+              $humedad = \App\Models\Humedad::create($validated);
+              return response()->json($humedad, 201);
     }
 
     /**
@@ -35,7 +33,7 @@ class HumedadController extends Controller
     {
            $humedad = \App\Models\Humedad::find($id);
            if (!$humedad) {
-              return response()->json(['error' => 'No encontrado'], 404);
+              return response()->json(['error' => 'No encontrado intentadenuevo'], 404);
            }
            return response()->json($humedad);
     }
