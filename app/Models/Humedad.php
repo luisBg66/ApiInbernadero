@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Humedad extends Model
 {
-    //
+    protected $fillable = ['humedad'];
 }
