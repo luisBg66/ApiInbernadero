@@ -18,11 +18,20 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Livewire\Livewire;
 
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        // Registrar manualmente los componentes Livewire de widgets específicos
+        // Esto permite usarlos en páginas/recursos sin activar discoverWidgets
+        if (class_exists(\Livewire\Livewire::class)) {
+            Livewire::component('app.filament.widgets.temperatura-chart', \App\Filament\Widgets\TemperaturaChart::class);
+            Livewire::component('app.filament.widgets.humedad-chart', \App\Filament\Widgets\HumedadChart::class);
+            Livewire::component('app.filament.widgets.precion-chart', \App\Filament\Widgets\PrecionChart::class);
+            Livewire::component('app.filament.widgets.iluminacion-chart', \App\Filament\Widgets\IluminacionChart::class);
+        }
         return $panel
             ->default()
             ->id('admin')
@@ -36,7 +45,7 @@ class AdminPanelProvider extends PanelProvider
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
+                // ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 \App\Filament\Widgets\ResumenInvernadero::class,
                 \App\Filament\Widgets\UltimasMedidasWidget::class,
