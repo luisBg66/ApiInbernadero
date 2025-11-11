@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Reverb\Server\Reverb;
+use App\Events\FanControl;
 
 class FanController extends Controller
 {
     public function turnOnFan()
     {
-        // Enviar el evento al canal de WebSocket
-        Reverb::broadcast('fan-control', 'turnOnFan', ['action' => 'on']);
+        // Emitir evento de Laravel que será transmitido por el driver de broadcasting (reverb)
+        event(new FanControl('on'));
 
         return response()->json(['message' => 'Comando enviado para encender el ventilador'], 200);
     }

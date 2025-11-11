@@ -2,9 +2,9 @@
 
 namespace App\Filament\Actions;
 
+use App\Events\FanControl;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
-use Reverb\Server\Reverb;
 
 class TurnOnFanAction extends Action
 {
@@ -15,8 +15,8 @@ class TurnOnFanAction extends Action
             ->icon('heroicon-o-play')
             ->color('success')
             ->action(function () {
-                // Enviar el evento al canal de WebSocket
-                Reverb::broadcast('fan-control', 'turnOnFan', ['action' => 'on']);
+                // Emitir evento que será transmitido por el driver de broadcasting configurado
+                event(new FanControl('on'));
 
                 Notification::make()
                     ->title('Ventilador Activado')
