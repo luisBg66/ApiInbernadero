@@ -2,8 +2,10 @@
 
 namespace App\Filament\Resources\Invernaderos\Schemas;
 
+use App\Helpers\ColorHelper;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
 
 class InvernaderoInfolist
 {
@@ -11,15 +13,18 @@ class InvernaderoInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('nombre'),
-                TextEntry::make('ubicacion'),
-                TextEntry::make('cultivo'),
-                TextEntry::make('created_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('updated_at')
-                    ->dateTime()
-                    ->placeholder('-'),
+                Section::make('Información del Invernadero')
+                    ->schema([
+                        TextEntry::make('nombre'),
+                        TextEntry::make('ubicacion')
+                            ->color(fn (TextEntry $component) => ColorHelper::colorUbicacion($component->getState()))
+                            ->badge(),
+                        TextEntry::make('cultivo')
+                            ->color(fn (TextEntry $component) => ColorHelper::colorCultivo($component->getState()))
+                            ->badge(),
+                    ])
+                    ->columns(3)
+                    ->columnSpanFull(),
             ]);
     }
 }
