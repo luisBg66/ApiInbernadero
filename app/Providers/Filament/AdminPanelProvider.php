@@ -52,6 +52,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 \App\Filament\Widgets\ResumenInvernadero::class,
                 \App\Filament\Widgets\UltimasMedidasWidget::class,
+                \App\Filament\Widgets\FanControlWidget::class,
                 \App\Filament\Widgets\TablaMedidasWidget::class,
                 AccountWidget::class,
                 FilamentInfoWidget::class,
