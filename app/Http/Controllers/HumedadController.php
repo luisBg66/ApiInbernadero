@@ -14,6 +14,7 @@ class HumedadController extends Controller
            return response()->json(\App\Models\Humedad::all());
     }
 
+    
     /**
      * Store a newly created resource in storage.
      */
