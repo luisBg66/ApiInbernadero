@@ -12,7 +12,7 @@ class CalidadAireFactory extends Factory
     public function definition(): array
     {
         return [
-            'estado' => $this->faker->randomElement(['bueno', 'malo', 'regular']),
+                    'calidad_aire' => $this->faker->randomFloat(2, 0, 1000),
         ];
     }
 }

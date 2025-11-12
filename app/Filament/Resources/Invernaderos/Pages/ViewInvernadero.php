@@ -25,6 +25,7 @@ class ViewInvernadero extends ViewRecord
             \App\Filament\Widgets\HumedadChart::class,
             \App\Filament\Widgets\PrecionChart::class,
             \App\Filament\Widgets\IluminacionChart::class,
+            \App\Filament\Widgets\CalidadAireChart::class,
         ];
     }
 }

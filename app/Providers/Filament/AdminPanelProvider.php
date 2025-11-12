@@ -32,6 +32,7 @@ class AdminPanelProvider extends PanelProvider
             Livewire::component('app.filament.widgets.humedad-chart', \App\Filament\Widgets\HumedadChart::class);
             Livewire::component('app.filament.widgets.precion-chart', \App\Filament\Widgets\PrecionChart::class);
             Livewire::component('app.filament.widgets.iluminacion-chart', \App\Filament\Widgets\IluminacionChart::class);
+            Livewire::component('app.filament.widgets.calidad-aire-chart', \App\Filament\Widgets\CalidadAireChart::class);
         }
         return $panel
             ->default()
