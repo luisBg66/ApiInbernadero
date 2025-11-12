@@ -2,19 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CalidadAire;
 use Illuminate\Http\Request;
 
 class CalidadAireController extends Controller
 {
+     /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+           return response()->json(\App\Models\CalidadAire::all());
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'estado' => 'required|string',
-        ]);
-
-        CalidadAire::create(['estado' => $data['estado']]);
-
-        return response()->json(['message' => 'Estado de calidad de aire guardado correctamente']);
+              $validated = $request->validate([
+                  'calidad_aire' => 'required|numeric',
+              ]);
+              $calidad = \App\Models\CalidadAire::create($validated);
+              return response()->json($calidad, 201);
     }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+           $calidad = \App\Models\CalidadAire::find($id);
+           if (!$calidad) {
+              return response()->json(['error' => 'No encontrado intentadenuevo'], 404);
+           }
+           return response()->json($calidad);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+
 }

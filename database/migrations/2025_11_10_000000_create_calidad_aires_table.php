@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('calidad_aires', function (Blueprint $table) {
             $table->id();
-            $table->string('estado'); // bueno, malo, regular, etc.
+            $table->decimal('calidad_aire', 5, 2); // igual que humedad
             $table->timestamps();
         });
     }

@@ -10,6 +10,6 @@ class CalidadAire extends Model
     use HasFactory;
 
     protected $fillable = [
-        'estado',
+        'calidad_aire',
     ];
 }
